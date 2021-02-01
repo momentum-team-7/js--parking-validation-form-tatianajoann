@@ -3,10 +3,12 @@ console.log('Add validation!');
 let formIsValid
 
 const form = document.querySelector("#parking-form")
+window.addEventListener('submit', event => {
+    event.preventDefault()
+} )
 
-
-form.addEventListener('submit', event => { 
-    event.preventDefault() 
+form.addEventListener('click', event => { 
+    //event.preventDefault() 
     validate(event)
     totalCost()
 })
@@ -18,7 +20,7 @@ function validate(event) {
     if (!validateCardNumber(cardnumber.value)) {
         formIsValid = false;
         cardnumber.setCustomValidity("Credit card number is invalid");
-        console.log(validateCardNumber(cardnumber.value))
+        //console.log(validateCardNumber(cardnumber.value))
     } else {
         cardnumber.setCustomValidity("");
         console.log(validateCardNumber(cardnumber.value))
@@ -26,7 +28,12 @@ function validate(event) {
     showFullPrice()
 }
 
-// // for let i=1; <= numDays; (++) {
+// const calculateCost = () => {
+//     day = newDate(da.setDate(date.getDate() + 1))
+//     day.push(day.getDay())
+// }
+
+// // // for let i=1; <= numDays; (++) {
 //     day = newDate(day.setDate(day.getDate() +1))
 //     days.push (day.getDay())
 // }
@@ -37,6 +44,10 @@ function validate(event) {
 //     return (total += price)
 // ), 0)
 // }
+
+//if we wanted to do the map as a loop
+//let newArray = days.slice()
+//asfjijawoe;ijf
 
 
 function totalCost() {
