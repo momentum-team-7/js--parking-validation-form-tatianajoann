@@ -14,7 +14,15 @@ form.addEventListener('submit', event => {
 function validate(event) {
     removeValidMessage()
     formIsValid = true
-
+    let cardnumber = document.querySelector("#credit-card")
+    if (!validateCardNumber(cardnumber.value)) {
+        formIsValid = false;
+        cardnumber.setCustomValidity("Credit card number is invalid");
+        console.log(validateCardNumber(cardnumber.value))
+    } else {
+        cardnumber.setCustomValidity("");
+        console.log(validateCardNumber(cardnumber.value))
+    }
     showFullPrice()
 }
 
