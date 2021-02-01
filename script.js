@@ -26,6 +26,17 @@ function validate(event) {
     showFullPrice()
 }
 
+// // for let i=1; <= numDays; (++) {
+//     day = newDate(day.setDate(day.getDate() +1))
+//     days.push (day.getDay())
+// }
+
+// return days
+// .map(day => (day >0 && day < 6 ? 5 : 7))
+// .reduce ((total, price) => {
+//     return (total += price)
+// ), 0)
+// }
 
 
 function totalCost() {
