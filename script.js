@@ -4,32 +4,34 @@ let formIsValid
 
 const form = document.querySelector("#parking-form")
 
-window.addEventListener('submit', event => { 
-event.preventDefault()
+
+form.addEventListener('submit', event => { 
+    event.preventDefault() 
+    validate(event)
+    totalCost()
 })
 
-form.addEventListener('click', validate, totalCost)
-
 function validate(event) {
-    event.preventDefault();
+    removeValidMessage()
     formIsValid = true
-    // confirmValidForm()
 
     showFullPrice()
 }
 
-// function confirmValidForm() {
-//     if (true) {
-        
-//     }
-// }
 
 
 function totalCost() {
     let price = 5
     let totaldays = document.querySelector("#days").value
     let fullprice = totaldays * price; 
-    console.log(totaldays)
+    let inputdate = document.querySelector("#start-date").value
+    console.log(inputdate)
+    let dateobject = new Date(inputdate)
+    console.log(dateobject)
+    let nextday = new Date(inputdate)
+    const textnextday = nextday.getDate()
+    nextday.setDate(textnextday + 1)
+    console.log(nextday)
     if (totaldays >= 1) {
     return "Your total cost is" + ' ' + "$" + fullprice}
 }
@@ -44,8 +46,32 @@ function showFullPrice () {
     }
 }
 
-// const fullPriceEl = document.createElement('h2') {
-//     const fullPricetxt = document.createTextNode('This form is valid!')
-//     validMsgEl.appendChild(validMsgText)
-//     document.querySelector('main').appendChild(validMsgEl)
-//   }
+function removeValidMessage () {
+    const fullPrice = document.querySelector("#full-price")
+    if (fullPrice) {
+        fullPrice.remove()
+    }
+}
+
+function validateCardNumber(number) {
+    var regex = new RegExp("^[0-9]{16}$");
+    if (!regex.test(number))
+        return false;
+
+    return luhnCheck(number);
+}
+
+function luhnCheck(val) {
+    var sum = 0;
+    for (var i = 0; i < val.length; i++) {
+        var intVal = parseInt(val.substr(i, 1));
+        if (i % 2 == 0) {
+            intVal *= 2;
+            if (intVal > 9) {
+                intVal = 1 + (intVal % 10);
+            }
+        }
+        sum += intVal;
+    }
+    return (sum % 10) == 0;
+}
