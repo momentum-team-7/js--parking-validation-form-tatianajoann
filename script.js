@@ -28,42 +28,32 @@ function validate(event) {
     showFullPrice()
 }
 
-// const calculateCost = () => {
-//     day = newDate(da.setDate(date.getDate() + 1))
-//     day.push(day.getDay())
-// }
-
-// // // for let i=1; <= numDays; (++) {
-//     day = newDate(day.setDate(day.getDate() +1))
-//     days.push (day.getDay())
-// }
-
-// return days
-// .map(day => (day >0 && day < 6 ? 5 : 7))
-// .reduce ((total, price) => {
-//     return (total += price)
-// ), 0)
-// }
-
-//if we wanted to do the map as a loop
-//let newArray = days.slice()
-//asfjijawoe;ijf
-
-
 function totalCost() {
-    let price = 5
+    //let price = 5
     let totaldays = document.querySelector("#days").value
-    let fullprice = totaldays * price; 
-    let inputdate = document.querySelector("#start-date").value
-    console.log(inputdate)
-    let dateobject = new Date(inputdate)
-    console.log(dateobject)
-    let nextday = new Date(inputdate)
-    const textnextday = nextday.getDate()
-    nextday.setDate(textnextday + 1)
-    console.log(nextday)
+    let fullprice = datething()
     if (totaldays >= 1) {
     return "Your total cost is" + ' ' + "$" + fullprice}
+}
+
+function datething() {
+    let inputdate = document.querySelector("#start-date").value
+    let totaldays = parseInt(document.querySelector("#days").value, 10)
+    console.log(totaldays)
+    let dateobject = new Date(inputdate)
+    let day = new Date(inputdate)
+    let days = []
+    for (let index = 1; index <= totaldays; index++){
+        day = new Date (day.setDate(day.getDate()+1))
+        console.log(day)
+        days.push(day.getDay())
+    }
+    console.log(days)
+    return days
+        .map(day => (day > 0 && day < 6 ? 5:7))
+        .reduce ((fullprice,cost) => {
+            return (fullprice += cost)
+        }, 0)
 }
 
 function showFullPrice () {
